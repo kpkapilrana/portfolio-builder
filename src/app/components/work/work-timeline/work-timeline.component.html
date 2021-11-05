@@ -1,0 +1,98 @@
+<div class="d-flex justify-content-center">
+  <div class="d-flex flex-column w-100 shadow bg-primary pb-5">
+    <div class="d-flex">
+      <div class="d-flex mr-auto ml-2">
+        <span class="card-header-text text-white font-weight-bold">WORK TIMELINE</span>
+      </div>
+    </div>
+
+    <div class="container py-2 text-primary">
+      <div class="row no-gutters" *ngFor="let work of works">
+        <div class="col-md"></div>
+        <div class="col-md-1 text-center flex-column d-none d-md-flex">
+          <div class="row h-50">
+            <div class="col">&nbsp;</div>
+            <div class="col">&nbsp;</div>
+          </div>
+          <h5 class="m-2">
+            <span class="badge badge-pill bg-light border">&nbsp;</span>
+          </h5>
+          <div class="row h-50">
+            <div class="col border-right">&nbsp;</div>
+            <div class="col">&nbsp;</div>
+          </div>
+        </div>
+        <div class="col-md py-2">
+          <div class="card">
+            <div class="card-body">
+              <div class="card-title timeline-card-title-text font-weight-bold mb-0">
+                <!-- 06/2019 - ongoing -->
+                {{ work?.date}}
+              </div>
+              <div class="text-success timeline-card-title-text">
+                <!-- Angular Developer -->
+                {{ work?.role}}
+              </div>
+              <div class="text-primary-light">
+                <!-- ABC Pvt Ltd. -->
+                {{ work?.comp_name}}
+              </div>
+              <div class="card-text mt-2 timeline-body-text">
+                <ul>
+
+                  <li class="mt-2" *ngFor="let point of work?.points">
+                    <!-- Info about roles and responsibilities -->
+                    {{ point?.point}}
+                  </li>
+                  <!-- <li class="mt-2">
+                    Projects involved in
+                  </li> -->
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- <div class="row no-gutters">
+        <div class="col-md py-2">
+          <div class="card shadow">
+            <div class="card-body">
+              <div class="card-title timeline-card-title-text font-weight-bold mb-0">
+                08/2018 - 06/2019
+              </div>
+              <div class="text-success timeline-card-title-text">
+                Project Trainee
+              </div>
+              <div class="text-primary-light">
+                XYZ Consulting Pvt Ltd.
+              </div>
+              <div class="card-text mt-2 timeline-body-text">
+                <ul>
+                  <li class="mt-2">
+                    Info about roles and responsibilities
+                  </li>
+                  <li class="mt-2">
+                    Projects involved in
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-1 text-center flex-column d-none d-md-flex">
+          <div class="row h-50">
+            <div class="col border-right">&nbsp;</div>
+            <div class="col">&nbsp;</div>
+          </div>
+          <h5 class="m-2">
+            <span class="badge badge-pill bg-light">&nbsp;</span>
+          </h5>
+          <div class="row h-50">
+            <div class="col">&nbsp;</div>
+          </div>
+        </div>
+        <div class="col-md"></div>
+      </div> -->
+    </div>
+  </div>
+</div>

@@ -1,0 +1,59 @@
+<div class="container">
+    <div class="d-flex component-margin-top">
+        <div>
+            <h3>Portfolio Builder</h3>
+        </div>
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+            <fieldset>
+                <!-- Personal Info -->
+                <legend>
+                    <h3>Personal Info </h3>
+                </legend>
+                <div formGroupName="personal_info" class="row">
+                    <!-- <div> -->
+                    <div class="col-md-4">
+                        <input type="text" formControlName="name" placeholder="Enter Name*">
+                    </div>
+                    <div class="col-md-4">
+                        <input type="tel" formControlName="contact_no" placeholder="Enter Contact Number*">
+                    </div>
+                    <div class="col-md-4">
+                        <input type="text" formControlName="developer" placeholder="Enter Developer Type">
+                    </div>
+                    <!-- </div> -->
+                </div>
+            </fieldset>
+            <!-- <div formGroupName="offer">
+
+        </div> -->
+            <fieldset>
+                <legend>
+                    <h3>Work Experience</h3>
+                </legend>
+                <div formArrayName="works">
+                    <div *ngFor="let work of form.get('works')['controls']; let i=index">
+                        <div [formGroupName]="i">
+                            <input type="date" formControlName="date" placeholder="Start Date">
+                            <input type="date" formControlName="date" placeholder="End Date">
+                            <input type="text" formControlName="role" placeholder="Enter Role">
+                            <input type="text" formControlName="comp_name" placeholder="Inst Comp Name">
+                            <i class="fas fa-plus" (click)="removeWork(i)">-</i>
+                            <div formArrayName="points">
+                                <div *ngFor="let point of work.get('points')['controls']; let j=index">
+                                    <div [formGroupName]="j">
+                                        <input type="text" formControlName="point" placeholder="Enter Point">
+                                        <i class="fas fa-plus" (click)="removePoint(work.controls.points, j)">-</i>
+                                    </div>
+                                </div>
+                                <i class="fas fa-plus" (click)="addPoint(work.controls.points)">Add Point</i>
+                            </div>
+                        </div>
+                    </div>
+                    <i class="fas fa-plus" (click)="addPoint(form.controls.works)">Add Work</i>
+                </div>
+            </fieldset>
+            <button type="submit">Submit</button>
+        </form>
+        <!-- {{ form.value |json}} -->
+    </div>
+</div>
