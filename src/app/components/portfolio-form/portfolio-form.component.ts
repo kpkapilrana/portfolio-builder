@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { faPlusSquare } from '@fortawesome/free-regular-svg-icons';
 
 @Component({
@@ -9,7 +10,7 @@ import { faPlusSquare } from '@fortawesome/free-regular-svg-icons';
 })
 export class PortfolioFormComponent implements OnInit {
   form: FormGroup;
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private router:Router) {}
 
   ngOnInit(): void {
     this.form = this.fb.group({
@@ -17,11 +18,12 @@ export class PortfolioFormComponent implements OnInit {
         name: [null, Validators.required],
         contact_no: [null, Validators.required],
         developer: [null],
+        user_type:[false]
       }),
-      // offer: this.fb.group({
-      //   info: [null],
-      //   subpoints: this.fb.array([this.newSubpoint()]),
-      // }),
+      offer: this.fb.group({
+        info: [null],
+        subpoints: this.fb.array([this.newSubpoint()]),
+      }),
       works: this.fb.array([this.newWork()]),
     });
   }
@@ -49,7 +51,8 @@ export class PortfolioFormComponent implements OnInit {
 
   newWork(): FormGroup {
     return this.fb.group({
-      date: [null],
+      start_date: [null],
+      end_date: [null],
       role: [null],
       comp_name: [null, Validators.required],
       points: this.fb.array([this.newPoint()]),
@@ -70,6 +73,14 @@ export class PortfolioFormComponent implements OnInit {
     this.works.removeAt(index);
   }
 
+  removeSubPoint(index){
+    this.subpoints.removeAt(index);
+  }
+
+  addSubPoint(controls) {
+    controls.push(this.newSubpoint());
+  }
+
   addPoint(controls) {
     controls.push(this.newPoint());
   }
@@ -82,6 +93,7 @@ export class PortfolioFormComponent implements OnInit {
     if (this.form.valid) {
       localStorage.setItem('data', JSON.stringify(this.form.value));
       this.form.reset();
+      this.router.navigate(['/about']);
     }
   }
 }

@@ -17,10 +17,11 @@
       class="d-flex flex-column text-primary bg-white text-monospace card-body-text"
     >
       <span class="mt-2 ml-2 mr-2">
-        I have been developing high quality web applications since
-        <b>X+ years</b>. I specialize in various Frontend technologies.
+        <!-- I have been developing high quality web applications since
+        <b>X+ years</b>. I specialize in various Frontend technologies. -->
+        {{ offer?.info}}
       </span>
-      <span class="mt-4 ml-2 mr-2">
+      <!-- <span class="mt-4 ml-2 mr-2">
         My Current technology stack includes
         <b>Javascript, Typescript, Angular, NodeJS</b> and various other
         frameworks and libraries related to them.
@@ -28,19 +29,22 @@
 
       <span class="mt-4 ml-2 mr-2">
         I can help you with multiple areas of projects:
-      </span>
+      </span> -->
 
       <div
         class="d-flex mt-2 ml-2 mr-2 p-4 mb-2 bg-primary-light border-secondary"
       >
         <div class="flex-column font-weight-bold text-white">
-          <div class="d-flex align-items-center">
+          <div class="d-flex align-items-center" *ngFor="let point of offer.subpoints">
             <span>{{ "{}" }}</span>
             <span class="ml-3"
-              >Developing/Co-developing frontend </span
+              >
+              <!-- Developing/Co-developing frontend -->
+              {{ point.subpoint}}
+               </span
             >
           </div>
-          <div class="d-flex mt-3 align-items-center">
+          <!-- <div class="d-flex mt-3 align-items-center">
             <span>{{ "{}" }}</span>
             <span class="ml-3">Efficient and readable code implementation</span>
           </div>
@@ -59,7 +63,7 @@
           <div class="d-flex mt-3 align-items-center">
             <span>{{ "{}" }}</span>
             <span class="ml-3">Estimating tasks and helping with CI/CD</span>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>

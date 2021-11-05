@@ -18,7 +18,7 @@
     </svg>
 
     <span class="navbar-brand mb-0 h1" style="margin-left: 10px; color: white"
-      >Tony Stark</span
+      >{{ projectName}}</span
     >
   </div>
 
@@ -51,7 +51,7 @@
     [ngClass]="{ collapse: collapsed, 'navbar-collapse': true }"
     id="navbarNavAltMarkup"
   >
-    <div class="navbar-nav">
+    <div class="navbar-nav" *ngIf="isExist">
       <a
         class="nav-link text-white"
         [routerLink]="['/about']"
@@ -65,5 +65,19 @@
         >Work</a
       >
     </div>
+    <!-- <div class="navbar-nav">
+      <a
+        class="nav-link text-white"
+        [routerLink]="['/about']"
+        [routerLinkActive]="['active']"
+        >About Me</a
+      >
+      <a
+        class="nav-link text-white"
+        [routerLink]="['/work']"
+        [routerLinkActive]="['active']"
+        >Work</a
+      >
+    </div> -->
   </div>
 </nav>

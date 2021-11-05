@@ -11,21 +11,42 @@
                 </legend>
                 <div formGroupName="personal_info" class="row">
                     <!-- <div> -->
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <input type="text" formControlName="name" placeholder="Enter Name*">
+                        <div *ngIf="!form.controls['personal_info']['controls']['name'].valid && form.controls['personal_info']['controls']['name'].touched">
+                            <div *ngIf="form.controls['personal_info']['controls']['name'].errors.required" style="background-color: red">
+                                Name is required
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <input type="tel" formControlName="contact_no" placeholder="Enter Contact Number*">
+                        <div *ngIf="!form.controls['personal_info']['controls']['contact_no'].valid && form.controls['personal_info']['controls']['contact_no'].touched">
+                            <div *ngIf="form.controls['personal_info']['controls']['contact_no'].errors.required" style="background-color: red">
+                                Contact Number is required
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <input type="text" formControlName="developer" placeholder="Enter Developer Type">
                     </div>
                     <!-- </div> -->
                 </div>
             </fieldset>
-            <!-- <div formGroupName="offer">
-
-        </div> -->
+            <div formGroupName="offer">
+                <div class="col-md-12"> 
+                        <input type="text" formControlName="info" placeholder="Enter Info">
+                </div>
+                <div formArrayName="subpoints" >
+                    <div *ngFor="let work of getOffer()['controls'].subpoints['controls']; let k=index" class="row">
+                        <div [formGroupName]="k"  class="col-md-8">
+                        <input type="text" formControlName="subpoint" placeholder="Enter Subpoint">
+                        <i class="fas fa-plus" (click)="removeSubPoint(k)">-</i>
+                    </div>
+                    </div>
+                    <i class="fas fa-plus" (click)="addSubPoint(form.controls.offer['controls']['subpoints'])">Add Subpoint</i>
+                </div>
+            </div>
             <fieldset>
                 <legend>
                     <h3>Work Experience</h3>
@@ -33,8 +54,8 @@
                 <div formArrayName="works">
                     <div *ngFor="let work of form.get('works')['controls']; let i=index">
                         <div [formGroupName]="i">
-                            <input type="date" formControlName="date" placeholder="Start Date">
-                            <input type="date" formControlName="date" placeholder="End Date">
+                            <input type="date" formControlName="start_date" placeholder="Start Date">
+                            <input type="date" formControlName="end_date" placeholder="End Date">
                             <input type="text" formControlName="role" placeholder="Enter Role">
                             <input type="text" formControlName="comp_name" placeholder="Inst Comp Name">
                             <i class="fas fa-plus" (click)="removeWork(i)">-</i>
