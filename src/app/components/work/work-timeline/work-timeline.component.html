@@ -27,7 +27,7 @@
             <div class="card-body">
               <div class="card-title timeline-card-title-text font-weight-bold mb-0">
                 <!-- 06/2019 - ongoing -->
-                {{ work?.date}}
+                {{ work?.start_date | date:'dd/MM/yyyy'}}  - {{ work?.end_date| date:'dd/MM/yyyy' }}
               </div>
               <div class="text-success timeline-card-title-text">
                 <!-- Angular Developer -->

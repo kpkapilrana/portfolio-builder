@@ -1,7 +1,7 @@
 <div class="container">
     <div class="d-flex component-margin-top">
         <div>
-            <h3>Portfolio Builder</h3>
+            <!-- <h3>Portfolio Builder</h3> -->
         </div>
         <form [formGroup]="form" (ngSubmit)="onSubmit()">
             <fieldset>
@@ -30,50 +30,69 @@
                     <div class="col-md-3">
                         <input type="text" formControlName="developer" placeholder="Enter Developer Type">
                     </div>
+                    <div class="col-md-3">
+                        <input type="checkbox" formControlName="user_type" id="user_type">
+                        <label for="user_type">Fresher</label>
+                    </div>
                     <!-- </div> -->
                 </div>
             </fieldset>
-            <div formGroupName="offer">
+            <fieldset>
+                <legend>
+                    <h3>Offer </h3>
+                </legend>
+            <div formGroupName="offer" class="row">
                 <div class="col-md-12"> 
-                        <input type="text" formControlName="info" placeholder="Enter Info">
+                        <textarea formControlName="info" placeholder="Enter Info" rows="3" cols="80"> </textarea>
                 </div>
-                <div formArrayName="subpoints" >
+                <div formArrayName="subpoints" class="col-md-12">
                     <div *ngFor="let work of getOffer()['controls'].subpoints['controls']; let k=index" class="row">
-                        <div [formGroupName]="k"  class="col-md-8">
-                        <input type="text" formControlName="subpoint" placeholder="Enter Subpoint">
+                        <div [formGroupName]="k" class="col-md-7">
+                        <input style="width: 100%;" type="text" formControlName="subpoint" placeholder="Enter Subpoint">
+                    </div>
+                    <div class="col-md-2">
                         <i class="fas fa-plus" (click)="removeSubPoint(k)">-</i>
                     </div>
+                    <div class="col-md-3">
+                        <i class="fas fa-plus" (click)="addSubPoint(form.controls.offer['controls']['subpoints'])">Add Subpoint</i>
                     </div>
-                    <i class="fas fa-plus" (click)="addSubPoint(form.controls.offer['controls']['subpoints'])">Add Subpoint</i>
+                    </div>
                 </div>
             </div>
+        </fieldset>
             <fieldset>
                 <legend>
                     <h3>Work Experience</h3>
                 </legend>
-                <div formArrayName="works">
-                    <div *ngFor="let work of form.get('works')['controls']; let i=index">
-                        <div [formGroupName]="i">
-                            <input type="date" formControlName="start_date" placeholder="Start Date">
-                            <input type="date" formControlName="end_date" placeholder="End Date">
-                            <input type="text" formControlName="role" placeholder="Enter Role">
-                            <input type="text" formControlName="comp_name" placeholder="Inst Comp Name">
-                            <i class="fas fa-plus" (click)="removeWork(i)">-</i>
-                            <div formArrayName="points">
-                                <div *ngFor="let point of work.get('points')['controls']; let j=index">
-                                    <div [formGroupName]="j">
-                                        <input type="text" formControlName="point" placeholder="Enter Point">
-                                        <i class="fas fa-plus" (click)="removePoint(work.controls.points, j)">-</i>
+                <div formArrayName="works" class="row">
+                    <div *ngFor="let work of form.get('works')['controls']; let i=index" class="col-md-12">
+                        <div [formGroupName]="i" class="row">
+                            <input type="date" formControlName="start_date" placeholder="Start Date" class="col-md-2">
+                            <input type="date" formControlName="end_date" placeholder="End Date" class="col-md-2">
+                            <input type="text" formControlName="role" placeholder="Enter Role" class="col-md-3">
+                            <input type="text" formControlName="comp_name" placeholder="Inst Comp Name*" class="col-md-3">
+                            <div class="col-md-2">
+                                <i class="fas fa-plus" (click)="removeWork(i)">-</i>
+                            </div>
+                            <div formArrayName="points" class="col-md-12">
+                                <div *ngFor="let point of work.get('points')['controls']; let j=index" class="row">
+                                    <div [formGroupName]="j" class="row">
+                                        <input type="text" formControlName="point" placeholder="Enter Point" class="col-md-6">
+                                        <div class="col-md-2">
+                                            <i class="fas fa-plus" (click)="removePoint(work.controls.points, j)">-</i>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <i class="fas fa-plus" (click)="addPoint(work.controls.points)">Add Point</i>
+                                        </div>
                                     </div>
                                 </div>
-                                <i class="fas fa-plus" (click)="addPoint(work.controls.points)">Add Point</i>
                             </div>
                         </div>
                     </div>
                     <i class="fas fa-plus" (click)="addPoint(form.controls.works)">Add Work</i>
                 </div>
             </fieldset>
-            <button type="submit">Submit</button>
+            <button type="submit" [disabled]="form.invalid">Submit</button>
         </form>
         <!-- {{ form.value |json}} -->
     </div>
